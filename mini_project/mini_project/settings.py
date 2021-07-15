@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'djoser',
     'account',
     'property',
-    #'Faq',
 ]
 
 MIDDLEWARE = [
@@ -153,38 +152,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':(
                 'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+    #    'rest_framework.authentication.TokenAuthentication',
+    #),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5
-}
-
-
-DJOSER = {
-    'USER_ID_FIELD': 'username',
-    'LOGIN_FIELD': 'email',
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_CONFIRMATION_EMAIL': True,
-    'SET_USERNAME_RETYPE': True,
-    'SET_PASSWORD_RETYPE': True,
-    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {
-        'user_create' : 'account.serializers.UserCreateSerializer',
-        'user' : 'account.serializers.UserCreateSerializer',
-        'user_delete' : 'djoser.serializers.UserDeleteSerializer',
-    },
-    'EMAIL': {
-        'activation': 'djoser.email.ActivationEmail',
-        'confirmation': 'djoser.email.ConfirmationEmail',
-        'password_reset': 'djoser.email.PasswordResetEmail',
-        'password_changed_confirmation': 'djoser.email.PasswordChangedConfirmationEmail',
-        'username_changed_confirmation': 'djoser.email.UsernameChangedConfirmationEmail',
-        'username_reset': 'djoser.email.UsernameResetEmail',
-    }
 }
