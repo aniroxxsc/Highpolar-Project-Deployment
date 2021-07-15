@@ -1,6 +1,7 @@
 Django backend for Real Estate - BSR The project is currently in working state, and some API's are under development To run the project follow the following steps
 
-(Added property details such as FAQ' and User Favourite functionality)
+Added property details such as FAQ' and User Favourite functionality)
+Added user authentication using django djoser
 
 Clone the git repo git clone
 
