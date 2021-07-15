@@ -20,4 +20,3 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     def create(self, request):
         pass
-

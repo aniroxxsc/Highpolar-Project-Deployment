@@ -17,5 +17,9 @@ from django.views.generic import TemplateView
 router = DefaultRouter()
 router.register(r'account', views.UserViewSet)
 urlpatterns = router.urls
+# The API URLs are now determined automatically by the router.
+urlpatterns += [
+
+]
 
 urlpatterns += [re_path( r'^.*', TemplateView.as_view(template_name='index.html'))]
