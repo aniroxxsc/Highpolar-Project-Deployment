@@ -6,6 +6,7 @@ from django.conf.urls import url
 router = DefaultRouter()
 router.register(r'property', views.PropertyViewSet,  basename='property')
 router.register(r'faq', views.Faq_PropertyViewSet,  basename='faq')
+router.register(r'Fav_property', views.Favourite_PropertyViewSet,  basename='fav property')
 urlpatterns = router.urls
 
 urlpatterns +=[

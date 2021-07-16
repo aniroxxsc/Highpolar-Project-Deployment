@@ -17,10 +17,10 @@ class Property(models.Model):
         choices = TYPE_CHOICES,
         default = "FLAT",
     )
-#    posted_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     under_construction = models.BooleanField(verbose_name = 'Under Construction')
     rera = models.BooleanField(verbose_name = 'RERA')
-    bhk_no = models.BooleanField(verbose_name = 'BHK No')
+    bhk_no = models.IntegerField(verbose_name = 'BHK No')
     bhk_or_rk = models.CharField(max_length=3, 
         choices = BHK_OR_RK_CHOICE,
         default = "BHK",
