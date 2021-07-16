@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from account.serializers import UserCreateSerializer
 from rest_framework.permissions import IsAuthenticated
-from property.serializers import PropertySerializers, Faq_PropertySerializers
+from property.serializers import PropertySerializers, Favourite_PropertySerializers, Faq_PropertySerializers
 from property.models import Property, Favourite_Property, Faq_Property
 from django.http import HttpResponse
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
@@ -47,7 +47,7 @@ class PropertyViewSet(viewsets.ModelViewSet):
         arr = arr.reshape(1,-1)
         model = pickle.load(open('./model/DecisionTreeRegressor.sav','rb'))
         y_pred = model.predict(arr)
-        print("############here is the value#######  : " ,request.POST["cost_estimated"], "  : ###### Value #######")
+ #       print("############here is the value#######  : " ,request.POST["cost_estimated"], "  : ###### Value #######")
 #        if cost_estimated := request.POST.get("cost_estimated"):
         request.data._mutable = True
         request.POST["cost_estimated"] = y_pred
@@ -55,8 +55,11 @@ class PropertyViewSet(viewsets.ModelViewSet):
         
 class Favourite_PropertyViewSet(viewsets.ModelViewSet):
     queryset = Favourite_Property.objects.all()
-    serializer_class = Favourite_Property
-    permission_classes = [IsAuthenticated]
+    serializer_class = Favourite_PropertySerializers
+#    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        user = self.request.user
+        return Favourite_Property.objects.filter(user_id=user)
     
 class Faq_PropertyViewSet(viewsets.ModelViewSet):
     queryset = Faq_Property.objects.all()
