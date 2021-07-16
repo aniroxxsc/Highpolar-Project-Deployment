@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'djoser',
     'account',
     'property',
+    #'Faq',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +137,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'aniroxxtheworld@gmail.com'
-EMAIL_HOST_PASSWORD  = 'nxpicnkgjlvqahks'
+EMAIL_HOST_PASSWORD = 'nxpicnkgjlvqahks'
 EMAIL_USE_TLS =True
 
 STATIC_URL = '/static/'
@@ -158,6 +160,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5
 }
+
 
 DJOSER = {
     'USER_ID_FIELD': 'username',
@@ -186,3 +189,5 @@ DJOSER = {
         'username_reset': 'djoser.email.UsernameResetEmail',
     }
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, ‘static’)
