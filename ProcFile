@@ -1,1 +1,1 @@
-web: gunicorn RealEstate.wsgi
+web: gunicorn mini_project.wsgi --log-file -

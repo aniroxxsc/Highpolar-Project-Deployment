@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-abmtrrftfzx)hq=q#nu8k!u3#efk0=em3wdjv0*!%o7j&oia(&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 AUTH_USER_MODEL = "account.User" 
 
 # Application definition
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'mini_project.urls'
@@ -85,8 +87,11 @@ WSGI_APPLICATION = 'mini_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Ciba',
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+
 #        'ENGINE': 'django.db.backends.postgresql',
 #        'NAME': 'database1',
 #        'USER': 'postgres',
@@ -140,10 +145,12 @@ EMAIL_HOST_USER = 'aniroxxtheworld@gmail.com'
 EMAIL_HOST_PASSWORD = 'nxpicnkgjlvqahks'
 EMAIL_USE_TLS =True
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'templates/static')
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -189,5 +196,4 @@ DJOSER = {
         'username_reset': 'djoser.email.UsernameResetEmail',
     }
 }
-
-STATIC_ROOT = os.path.join(BASE_DIR, ‘static’)
+django_heroku.settings(locals())
